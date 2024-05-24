@@ -1,0 +1,22 @@
+This build of APP includes:
+docker-compose.yaml file, which used to build and run 3 containers:
+1. web - nginx container for serving static files.
+ (includes files directory with index.html - template file for app, js/main.js - main javascript functions).
+ You need to fix server name in nginx config file before starting up the docker instance.
+ 
+2. neo4j - neo4j database with tsi-mappings database dump, which loaded at startup.
+
+3. api - FastApi APP which connect to neo4j database inside container. 
+
+At this point there is no user's authentication all API endpoints freely accessible at http://localhost/ address.
+
+To run this containers use this command as root in current directory:
+
+docker-compose up --build
+
+These ports: 80, 443, 7678, 7474 should be free.
+
+
+After that docker run these 3 containers and you can check app at: http://localhost/
+Api documentation - http://localhost/docs/
+

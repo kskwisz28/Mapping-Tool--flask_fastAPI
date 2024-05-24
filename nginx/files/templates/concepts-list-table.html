@@ -1,0 +1,97 @@
+<div id="results-panel-inner">
+    <div class="search-info">
+        Showing  <span class="b" id="skip">{{skip}}</span> - <span class="b" id="count">{{count_to}}</span>
+        of <span class="b" id="total">{{total}}</span> <b>Concepts</b>
+        
+        <br />
+        found by <span class="b" id="found-by">{{found_by}}</span> 
+        <div class="add-mapping"><a>+ Add new mapping</a></div>
+    </div>
+
+    <table class="table" id="concepts-results-table" >
+        <thead class="thead-light">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col" class="pointer" onclick="sort('name', '{{name_sort}}')">Concept
+                    {{#name_sort}}
+                    <span data-sort="{{name_sort}}" id = "concept-sort" class="oi {{sort_order}}"></span>
+                    {{/name_sort}}
+                </th>
+                <th scope="col">Location</th>
+                <th scope="col" class="pointer" onclick="sort('pagerank', '{{pagerank_sort}}')">Popularity
+                    {{#pagerank_sort}}
+                    <span data-sort="{{pagerank_sort}}" id = "rank-sort" class="oi {{sort_order}}"></span>
+                    {{/pagerank_sort}}
+                </th>
+                <th scope="col" class="pointer" onclick="sort('state', '{{state_sort}}')" >Enabled
+                    {{#state_sort}}
+                    <span data-sort="{{state_sort}}" id = "rank-sort" class="oi {{sort_order}}"></span>
+                    {{/state_sort}}
+
+                </th>
+            </tr>
+        </thead>
+        
+        <tbody id="concepts-results-body" >
+            {{#data}}
+
+            <tr id="{{concept.concept_id}}-{{locations.l.location_id}}" >
+                <td class="expand" onclick='expand("{{concept.concept_id}}-{{locations.l.location_id}}", "{{concept.concept_id}}");'">
+                    <span class="oi oi-chevron-right"></span>
+                </td>
+                <td>{{parse_concept_name}}</td>
+                <td>{{parse_location}}</td>
+                <td>{{parse_rank}}</td>
+                <td>
+                    {{#concept_banned}}
+                    banned
+                    {{/concept_banned}}
+
+                    {{#parse_state}}
+                    <div class="custom-control custom-switch">
+                        <input id="{{concept.concept_id}}-{{locations.l.location_id}}-switch" type="checkbox" class="custom-control-input btn-lg change-state-btn" checked="checked" data-concept-id="{{concept.concept_id}}" data-location-id="{{locations.l.location_id}}" data-state="active">
+                        <label for="{{concept.concept_id}}-{{locations.l.location_id}}-switch" class="custom-control-label"></label>
+                    </div>
+                    {{/parse_state}}
+                    {{#parse_state_deactive}}
+                    <div class="custom-control custom-switch">
+                        <input id="{{concept.concept_id}}-{{locations.l.location_id}}-switch" type="checkbox" class="custom-control-input btn-lg change-state-btn" data-concept-id="{{concept.concept_id}}" data-location-id="{{locations.l.location_id}}" data-state="inactive" >
+                        <label for="{{concept.concept_id}}-{{locations.l.location_id}}-switch" class="custom-control-label"></label>
+                    </div>
+                    {{/parse_state_deactive}}
+
+                </td>
+                <tr class="desc-tr">
+                    <td></td>
+                    <td colspan="4">
+                        {{parse_description}}
+                        <a target=_"blank" href="https://en.wikipedia.org/wiki/{{concept.concept_id}}">View in Wikipedia</a>
+                    </td>
+                </tr>
+            </tr>
+            {{/data}}
+
+        </tbody>
+    </table>
+
+    {{#nodata}}
+    <div class="m-5" >
+        <h5>There are no such concepts linked. Please add new mapping</h5>
+    </div>
+    {{/nodata}}
+
+</div>
+
+<nav id="pagination" >
+    <ul class="pagination">
+        {{#prev_page}}
+        <li class="page-item"><a class="page-link" data-page-id="{{prev_page}}">< Previous</a></li>
+        {{/prev_page}}
+        {{#pagination}}
+        <li class="page-item {{#active}}active{{/active}}"><a class="page-link" data-page-id="{{page}}" >{{page}}</a></li>
+        {{/pagination}}
+        {{#next_page}}
+        <li class="page-item"><a class="page-link" data-page-id="{{next_page}}">Next ></a></li>
+        {{/next_page}}
+    </ul>
+</nav>

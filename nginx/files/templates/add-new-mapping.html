@@ -1,0 +1,107 @@
+<div class="modal" tabindex="-1" role="dialog" id="add_new_mapping_modal" >
+    <div class="modal-dialog" role="document">
+        <form class="needs-validation" novalidate>
+            <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Mapping</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="add-mapping-modal-body" >
+                <div class="form-group">
+                    <br />
+                    <b>Type location name</b>
+                    <div class="input-group mb-3">
+                        <div class="dropdown">
+                            <input autocomplete="one-time-code" type="text" placeholder="Search for location" class="form-control select-location" data-type="select-location" data-toggle="dropdown">
+                            <button type="button" class="close" onclick="clear_all();" >
+                                <span aria-hidden="true">&times;&nbsp;</span>
+                            </button>
+
+                            <div class="dropdown-menu select-location-dropdown" id="locations-dropdown">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="select_country"><b>or select from list</b></label>
+                        <div class="input-group mb-3">
+                            <div class="dropdown">
+                                <input autocomplete="one-time-code" type="text"  data-toggle="dropdown" data-type="select-country" placeholder="Country" id="select_country" value="" class="form-control col-12 select-country" >
+                                <!-- <div class="drop-icon">▼</div> -->
+
+                                <div class="dropdown-menu select-country-dropdown" aria-labelledby="dropdownMenuButton">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="dropdown">
+                                <input autocomplete="one-time-code" type="text"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" placeholder="Region" data-type="select-region" value="" disabled class="form-control select-region" >
+                                <!-- <div class="drop-icon"" >▼</div> -->
+                                <div class="dropdown-menu select-region-dropdown" aria-labelledby="dropdownMenuButton" >
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="dropdown">
+                                <input autocomplete="one-time-code" type="text"  data-toggle="dropdown" placeholder="City" value="" disabled class="form-control select-city" data-type="select-city" >
+                                <!-- <div class="drop-icon">▼</div> -->
+                                <div class="dropdown-menu select-city-dropdown" aria-labelledby="dropdownMenuButton">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <br />
+                        <b>Map to concept:</b>
+                        <div class="input-group mb-3">
+                            <div class="dropdown">
+                                <input autocomplete="one-time-code" type="text"  data-toggle="dropdown" placeholder="Search for concept name"  value="" data-type="select-concept" class="form-control select-concept" required>
+
+                                <button type="button" class="close" aria-label="Close" onclick="clear_all();" >
+                                    <span aria-hidden="true">&times;&nbsp;</span>
+                                </button>
+
+                                
+                                <div class="dropdown-menu select-concept-dropdown" aria-labelledby="dropdownMenuButton" id="concepts_dropdown">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="alert alert-warning alert-dismissible fade show d-none" role="alert" id="no-location-selected" >
+                    You need to select Location or Fill Coutry/Region/City to Add new Mapping
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer" id="new-mapping-modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="new-mapping-modal-footer-btn">Continue</button>
+            </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+ $('#add_new_mapping_modal').on('hidden.bs.modal', function (e) {
+     // this modal window generated each time user clicks on
+     // add new mapping btn, so we need to remove it from html
+     $('#add_new_mapping_modal').remove();  
+ })
+</script>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>TSI Mappings</title>
+        <link rel="stylesheet" href="static/css/bootstrap.min.css?v4.2">
+        <link rel="stylesheet" href="static/css/styles.css?ver=8">
+        <link rel="stylesheet" href="static/css/open-iconic-bootstrap.min.css">
+    </head>
+    <body>
+
+        
+        <div class="main-container">
+            <div class="row">
+                <div id="search-panel">
+                    <h4>Search</h4>
+                    <ul class="nav nav-tabs" id="nav-tabs-list" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="location-link" data-toggle="tab" href="#location-tab" role="tab" aria-selected="true" onclick="tab();">Location</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="concept-tab" data-toggle="tab" href="#concept" role="tab" aria-controls="concept" aria-selected="false" onclick="tab();" >Concept</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="location-tab" role="tabpanel">
+                            <div class="form-group">
+                                <br />
+                                <b>Type location name</b>
+                                <div class="input-group mb-3">
+                                    <div class="dropdown">
+                                        <input autocomplete="one-time-code" type="text" placeholder="Search for location" class="form-control select-location" data-type="select-location" data-toggle="dropdown">
+                                        <button type="button" class="close" onclick="clear_all();" >
+                                            <span aria-hidden="true">&times;&nbsp;</span>
+                                        </button>
+
+                                        <div class="dropdown-menu select-location-dropdown" id="locations-dropdown">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <hr />
+                                <div class="form-group">
+                                    <label for="select_country"><b>or select from list</b></label>
+                                    <div class="input-group mb-3">
+                                        <div class="dropdown">
+                                            <input autocomplete="one-time-code" type="text"  data-toggle="dropdown" data-type="select-country" placeholder="Country" id="select_country" value="" class="form-control col-12 select-country" >
+                                            <div class="drop-icon">▼</div>
+
+                                            <div class="dropdown-menu select-country-dropdown" aria-labelledby="dropdownMenuButton">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="dropdown">
+                                            <input autocomplete="one-time-code" type="text"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" placeholder="Region" data-type="select-region" value="" disabled class="form-control select-region" >
+                                            <div class="drop-icon"" >▼</div>
+                                            <div class="dropdown-menu select-region-dropdown" aria-labelledby="dropdownMenuButton" >
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <div class="dropdown">
+                                            <input autocomplete="one-time-code" type="text"  data-toggle="dropdown" placeholder="City" value="" disabled class="form-control select-city" data-type="select-city" >
+                                            <div class="drop-icon">▼</div>
+                                            <div class="dropdown-menu select-city-dropdown" aria-labelledby="dropdownMenuButton">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane" id="concept" role="tabpanel">
+                            <br />
+                            <b>Concept name</b>
+                            <div class="input-group mb-3">
+                                <div class="dropdown">
+                                    <input autocomplete="one-time-code" type="text"  data-toggle="dropdown" placeholder="Search for concept name"  value="" data-type="select-concept" class="form-control select-concept">
+
+                                    <button type="button" class="close" aria-label="Close" onclick="clear_all();" >
+                                        <span aria-hidden="true">&times;&nbsp;</span>
+                                    </button>
+
+                                    
+                                    <div class="dropdown-menu select-concept-dropdown" aria-labelledby="dropdownMenuButton" id="concepts_dropdown">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-3">
+                                <button type="button" class="btn btn-light" onclick="clear_all();" >Clear</button>
+                            </div>
+                            <div class="col-4" >
+                                <button class="btn btn-primary" onclick="list_concepts(1, true);" >Search</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                
+                <div class="col_" id="results-panel">
+                    <div class="m-5">
+                        <button class="btn btn-light" onclick="list_concepts(1);" >Browse all concepts</button>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+        </div>
+
+        <div style="display:none" id="ui-templates-elements" >
+            <!-- html templates used for API (will be removed soon) -->
+            <!-- no location template -->
+            <div id="no-location">
+                Selected location has no linked concepts yet. Please add new mapping.
+            </div>
+        </div>
+        
+        <script src="static/js/jquery-3.6.0.min.js"></script>
+        <script src="static/js/popper.min.js"></script>
+        <script src="static/js/bootstrap.min.js"></script>
+        <script src="static/js/mustache.js"></script>
+        <script src="static/js/main.js"></script>
+
+        
+            
+    </body>
+</html>

@@ -1,0 +1,21 @@
+Mapping concept <b>"{{concept.concept_id}}"</b> to:<br />
+
+Country: <b>{{location.country.country_id}}</b><br />
+Region: <b>{{location.region.region_id}} </b><br />
+City: <b>{{location.city.city_id}}</b><br />
+<br />
+Wikipedia URL: <a target="_blank" href="https://en.wikipedia.org/wiki/{{concept.concept_id}}">https://en.wikipedia.org/wiki/{{concept.concept_id}}</a> </br>
+Description: <b>{{concept.description}}</b>
+<br />
+Types:
+{{#types}}
+<span class="badge badge-light"><b>{{ . }}</b></span>
+{{/types}}
+<hr />
+Concepts beneath "{{concept.concept_id}}" will be also linked: <br />
+{{#lower_concepts}}<b>{{concept.concept_id}}</b>, {{/lower_concepts}}
+{{#more}} and {{ more }} more <a target="_blank" href="/?concept_id={{concept.concept_id}}">View All</a> {{/more}}
+
+<!--  -->
+<input id="location_id_input_validated" type="hidden" name="location_id" value="{{location.l.location_id}}">
+<input id="concept_id_input_validated" type="hidden" name="concept_id" value="{{concept.concept_id}}">

@@ -1,0 +1,63 @@
+version: "3.3"        # development env
+    
+services:
+    web:
+        build: nginx
+        ports:
+          - 80:80
+          - 443:443
+        depends_on:
+          - api
+        networks:
+          - frontnet
+          
+    # db: # only for development process
+    #     image: postgres
+    #     container_name: "postgres"
+    #     volumes:
+    #       - ./data/db:/var/lib/postgresql/data
+    #     environment:
+    #       - POSTGRES_DB=postgres
+    #       - POSTGRES_USER=postgres
+    #       - POSTGRES_PASSWORD=postgres          
+    #     networks:
+    #       - backnet
+
+    neo4j:
+        build: neo4j
+        container_name: "neo4j-tsi"
+        restart: unless-stopped
+        ports:
+          - 7474:7474
+          - 7687:7687
+        volumes:
+          - ./neo4j-data:/neo4j-data
+          #          - ./neo4j/local/:/var/lib/neo4j
+        environment:
+          - DB_HOST=localhost
+          - DB_PORT=7474
+          - DB_USER=neo4j
+          - DB_PASSWORD=test123
+        networks:
+          # - frontnet
+          - backnet
+
+    api:
+        build: tsi_api
+        env_file:
+          - ./tsi_api/.env
+        environment:
+          - PORT=8080
+        ports:
+          - 8080:8080
+        networks:
+          - frontnet
+          - backnet
+        depends_on:
+          #- db
+          - neo4j
+
+networks:
+  backnet:
+  frontnet:
+
